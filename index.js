@@ -124,7 +124,7 @@ module.exports.last = last;
    * @param {array} collection; an array
    * @param {value}: the target that will be checked by the function
    * @param {function} action:  tester function looks through a list to see if the passed in value exists
-   * @returns {boolean}: returns true if value exists in the collection
+   * @returns {boolean}: returns true if value exists in the collection and false if it doesnt exist
    */
    function contains(arr, value){
     return (arr.includes(value) ? true : false); //return true if value exists in array
@@ -132,10 +132,10 @@ module.exports.last = last;
 module.exports.contains = contains;
  
 /**unique: Return a new array of all elements from the array with duplicates removed
- * uses indexOf in the function background
+ * uses indexOf in the function background. uses the indexOf method in the body of the function to determine if the item 
+ *          already exists in the output array.
  * @param {array} collection: an array collection
- * @param {function}action: loops thru array and gets all elements while leaving copies
- * @returns{array}; returns the collection with duplicates removed
+ * @returns {array} collection: returns the collection with duplicates removed
  */
  function unique(array){
     var newArray = [];
@@ -155,7 +155,8 @@ module.exports.unique = unique;
 *      the element, it's index, array
  * Looks through each value in the list, returning an array of all the values that pass a truth test
  * @param{array} collection: array is passed in arguments
- * @param{function} this is a tester function that is passed in the parameter. action: loops
+ * @param{function} this is a tester function that is passed in the parameter. action: loops and the tester 
+ *                  function in filter "tests" each value in the array against a certain condition
  * @returns{array}return a new array of elements for which calling function returned true
  */
  
@@ -256,7 +257,7 @@ module.exports.pluck = pluck;
 /**every: Returns true if all of the values in the list pass the truthy test.
  * it stops looping the list if a false element is found.  checks if func is funf, array is array & object is object
  * @param{array or object} collection: takes in a collection
- * @param{function} action: a tester function checks what type of collection, loops thru looking for truthy returns
+ * @param{function} action:  The tester function tests for if the function returns true or false.
  * @returns{boolean};  returns true if all itterations are true or false at the 1st faalse return
  */
 function every(collection, func){
@@ -296,7 +297,7 @@ function every(collection, func){
  *  If the return value of calling <function> is true for at least one element, return true
  * if all are false return false
  * @param{collection}collection: takes collection as arguments
- * @param{function} action: a tester function checks if func is func and if array or object and loops thru
+ * @param{function} action: tests the current array value and sees if the function returns true.
  * @returns{boolean}: returns true if any values are true and false if all are false
  */
  
@@ -340,7 +341,8 @@ module.exports.some = some;
  *         After the last iteration, return the return value of the final <function> call
  * @param{array}collection: takes an array
  * @param{function}action: loops starting at seed (index num or string"") then adds in each itteration to previous
- * @param{seed}: tells the function where to start iterating from in the collection, value to initialize the accumulator value in your combine function
+ * @param{seed}: seed just initializes what the value of the accumulator is on the first iteration. 
+ *              if no seed is given, seed is initialized as the first value in the array.
  * @returns{value}: return the value of last function call itteation
  */
 function reduce(array, func, seed){
@@ -359,7 +361,7 @@ function reduce(array, func, seed){
 module.exports.reduce = reduce;
  
 /**extend: takes multiple objects. able to add objects into one object and continue to add new ones in the
- * order they are given
+ * order they are given. makes copies of objects and passes them into one object. makes for future additions in order
  * @param{object, object1, object2...}takes in multiple objects
  * @param{function}action: a tester function that makes copies of objects and passes them into one object. makes for future additions
  *                          in order
